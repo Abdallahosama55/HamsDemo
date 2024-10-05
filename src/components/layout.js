@@ -12,7 +12,9 @@ export default function Layout({ children }) {
       <main
         sx={{
           variant: 'layout.main',
+          
         }}
+        className=' overflow-x-hidden'
       >
         {children}
       </main>

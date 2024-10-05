@@ -2,7 +2,7 @@ import React from 'react';
 
 const AnimatedSVG = () => {
   return (
-  <div>  <svg
+  <div className=' overflow-x-hidden'>  <svg
   width="100%"
   height="100%"
   id="svg"
