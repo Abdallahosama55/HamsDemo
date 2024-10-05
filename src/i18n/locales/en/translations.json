@@ -1,0 +1,102 @@
+{
+  "welcome": "Welcome",
+  "Home": "Home",
+  "Why hjz": "Why Ham.AI",
+  "How it work?": "Solutions",
+  "FAQs": "FAQs",
+  "hjz": "Hams.AI",
+  "ONE-STOP-SHOP": "Turn voice data into insights with our leading Speech AI models.",
+  "Description-hjz": "Our voice AI platform provides APIs for speech-to-text, text-to-speech, and Arabic language understanding. From medical transcription to autonomous agents, Clickn is the one click go-to to use voice AI experiences.",
+  "Subscribe": "Subscribe",
+  "Company-Name": "Restaurant/Cafe Name",
+  "Mobile": "Mobile",
+  "speaking-now": "Speak now ...",
+  "click-to-speaking": "Click the mic to start the call",
+  "Feature-Title": "Why Hams.AI",
+  "why":"Why",
+  "trust": "Trusted",
+  "hams":"Hams.AI?",
+  "Feature-Title-01": "94% Speech Recognition Accuracy in Arabic",
+  "Feature-Description-01": "Hams.AI leader in Speech Arabic Language in the industry with the most accurate models in the market across use case categories.",
+  "Feature-Title-02": "3-5x cheaper",
+  "Feature-Description-02": "Our GPU infrastructure optimizes speech and language models for superior, cost-effective performance.",
+  "Feature-Title-03": "Keep your customers",
+  "Feature-Description-03": "More than 60% of customers leave because of waiting in line, keep them now and increase your revenue",
+  "How": "Voice AI",
+  "It-Work": "Foundations",
+  "How-work-Title-01": "Speech to Text",
+  "How-work-Description-01": "Fast and super accurate Arabic speech recognition, with advanced features to make your transcripts more readable and usable by humans and machines",
+  "How-work-Title-02": "Text to Speech",
+  "How-work-Description-02": "Turn any text into audio",
+  "How-work-Title-03": "Audio Intelligence",
+  "How-work-Description-03": "Audio Intelligence like no other. Identify, analyze, and summarize conversational audio with efficient, task-specific language models built for enterprise scale",
+  "FAQ-Title": "Frequently Ask Question...",
+  "FAQ-Title-01": "What are the use cases for Hams.AI?",
+  "FAQ-Description-01": "You can use one of our solutions, called 'Hams Call' in various sectors such as Healthcare and Customer Support. This solution transforms customer service with voice bots that can handle inquiries and solve problems 24/7 without human intervention, enhancing efficiency, user experience and reduce cost.",
+  "FAQ-Title-02": "What makes your Voice AI solutions stand out?",
+  "FAQ-Description-02": "Our Voice AI solutions are highly customizable, support multiple languages and espically in Arabic language with offer exceptional accuracy. They are designed to integrate seamlessly with existing systems, enhancing user experience without disrupting established workflows.",
+  "FAQ-Title-03": "Are you based in Saudi Arabia?",
+  "FAQ-Description-03": "Yes, we're based on Riyadh, Saudi Arabia.",
+  "Subscribee-Now": "Unlock voice AI at scale with an API Call",
+  "request-title-successful": "Successful Subscription",
+  "request-text-successful": "Thank you, Hams.ai team will contact you soon.",
+  "request-button-successful": "Ok",
+  "request-title-invalid": "Ummm..Somthing went wrong",
+  "request-text-invalid": "Please, Make sure you filled all the fields",
+  "request-button-invalid": "Ok",
+  "word-box": "We offer unbeatable value and unparalleled performance. Try the first and best models for converting text to speech and speech to text in Arabic!",
+  "know-more-title": " by companies across every use case",
+  "Signup":" Signup",
+  "Problems": {
+    "title": "Problems",
+    "HighOperationalCosts": {
+      "title": "High Operational Costs",
+      "description": "Traditional call centers rely heavily on human staff to manage customer interactions, resulting in significant operational expenses."
+    },
+    "TimeSavings": {
+      "title": "Time Savings",
+      "description": "Existing situations suffer from long response times, impacting user satisfaction."
+    },
+    "InefficientDataUtilization": {
+      "title": "Inefficient Data Utilization",
+      "description": "Businesses struggle to extract and leverage insights from unstructured audio data due to technological limitations."
+    },
+    "LongDevelopmentTime": {
+      "title": "Long Development Time",
+      "description": "Deploying and training Automatic Speech Recognition (ASR), Speech-to-Text, and Text-to-Speech models is a complex and challenging process."
+    },
+    "LocalExecutionRequirement": {
+      "title": "Local Execution Requirement",
+      "description": "Critical need for voice AI systems to operate effectively within local infrastructures to ensure optimal performance and compliance."
+    },
+    "EconomicImpactOfMissedCalls": {
+      "title": "Economic Impact of Missed Calls",
+      "description": "Inadequate voice AI solutions lead to significant business losses, with missed calls costing around $75B annually."
+    }
+  },
+  "HowItWorks": {
+    "title": "How it works",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Tell Hams your use case",
+        "description": "Sales? Customer Support? Operations? Or creating a product on top of us? We can do it all. Just start by telling Bland how to act."
+      },
+      {
+        "number": "02",
+        "title": "Pick any voice or language",
+        "description": "Pick or clone any voice. Choose your language, we will send or receive phone calls however you want, with emotion."
+      },
+      {
+        "number": "03",
+        "title": "Teach it like an employee",
+        "description": "Make a pathway to handle any conversation just like a human. With our guardrails, it can respond to anything intelligently. Without hallucination."
+      },
+      {
+        "number": "04",
+        "title": "Easily integrate your tools",
+        "description": "Want to automatically transfer to a human? Book a meeting? Send AI texts? Update a CRM? Simply drop your preferred tool into Hams, and we’ll handle the integration seamlessly."
+      }
+    ]
+  }
+}

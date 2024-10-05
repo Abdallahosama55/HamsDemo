@@ -1,0 +1,26 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html, body {
+  height: 100%;
+}
+
+
+
+.box {
+  @apply relative  rounded-xl; /* Main box styles */
+}
+
+.box:after {
+  content: "";
+  @apply absolute w-12 h-12 -top-2 -right-2 border-t-4 border-r-4 border-[#5253B9] rounded-tr-xl; /* Top-right corner */
+}
+
+.box:before {
+  content: "";
+  @apply absolute w-12 h-12 -bottom-1 -left-1 border-b-4 border-l-4 border-[#5253B9] rounded-bl-xl; /* Bottom-left corner */
+}

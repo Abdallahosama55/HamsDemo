@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_landing_015_gatsby=self.webpackChunk_landing_015_gatsby||[]).push([[127],{9555:function(e,t,n){n.r(t);var a=n(6540),s=n(3461),l=n(2269);t.default=()=>a.createElement(s.A,null,a.createElement(l.A,{title:"404: Not found"}),a.createElement("h1",null,"Hams.ai This Page doesn't exist. Sorry"),a.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}]);
+//# sourceMappingURL=component---src-pages-not-found-page-js-0e3d0c65756dac031624.js.map
