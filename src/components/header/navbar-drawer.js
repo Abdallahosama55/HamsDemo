@@ -1,20 +1,29 @@
 /** @jsx jsx */
 import { jsx, Box, Image, Button, MenuButton } from "theme-ui";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-scroll";
 import { rgba } from "polished";
 import { DrawerContext } from "contexts/drawer/drawer-context";
 import Drawer from "components/drawer";
 // import Logo from 'components/logo';
 import Logo from "../logoNav";
-import menuItems from "./header.data";
+import img1 from "../../assets/images/speech-to-text.svg";
+import img2 from "../../assets/images/text-to-speech.svg";
+import img3 from "../../assets/images/AI-to-speech.svg";
+
 import close from "assets/images/icons/close.png";
 import { useTranslation } from "react-i18next";
 import "../../i18n/config";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 const NavbarDrawer = () => {
   const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(DrawerContext);
+  const [openMenu, setOpenMenu] = useState(null);
+
+  const handleMenuToggle = (i) => {
+    setOpenMenu(openMenu === i ? null : i);
+  };
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
@@ -55,7 +64,33 @@ const NavbarDrawer = () => {
       arsFont[0].classList.remove("en-font");
     }
   };
-
+  const menuItems = [
+    {
+      path: 'home',
+      label: 'Home',
+      subMenuStatus: "false", // explicitly set to false
+    },
+    {
+      subMenuStatus: "true",
+      path: 'whyhjz',
+      label: 'Why hjz',
+    },
+    {
+      path: 'HowUseIt',
+      label: 'How it work',
+      subMenuStatus: "true",
+      subMenu: [
+        { path: 'step1', label: 'How-work-Title-01' ,icon:img1 },
+        { path: 'step2', label: 'How-work-Title-02' ,icon:img2 },
+        { path: 'step3', label: 'How-work-Title-03',icon:img3 },
+      ],
+    },
+    {
+      path: 'FAQs',
+      label: 'FAQs',
+      subMenuStatus: "false", // explicitly set to false
+    }
+  ];
   return (
     <Drawer
       width="340px"
@@ -80,26 +115,60 @@ const NavbarDrawer = () => {
       <Box sx={styles.wrapper}>
         <Logo sx={styles.logo} />
         <Box as="ul" sx={styles.navbar}>
-          {menuItems.map(({ path, label }, i) => (
-            <Box as="li" key={i}>
-              <Link
-                activeClass="active"
-                to={path}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                {t(label)}
-              </Link>
+      {menuItems.map((item, i) => (
+        <Box as="li" key={i} sx={{ position: 'relative' }}>
+          <Link
+            activeClass="active"
+            to={item.path}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            onClick={() => item.subMenu && handleMenuToggle(i)} // Toggle submenu if present
+          >
+            {t(item.label)}
+            {item.subMenu && (
+              <span style={{ marginLeft: '8px' }}><MdKeyboardArrowDown /></span> // Dropdown icon
+            )}
+          </Link>
+
+          {/* Conditionally render subMenu as dropdown */}
+          {item.subMenu && openMenu === i && (
+            <Box
+              as="ul"
+              sx={{
+                top: '100%',
+                left: 0,
+           
+                padding: '10px', 
+              }}
+            >
+              {item.subMenu.map((subItem, subIndex) => (
+                <Box as="div" key={subIndex}  >
+                  <Link
+                    activeClass="active"
+                    to={subItem.path}
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                     className ="flex items-center gap-2 text-sm p-2 hover:text-[#5253B9]"
+                  >
+                    <img src={subItem.icon} alt={t(subItem.label)} className=" w-[20px] h-[20px] "/>
+                    {t(subItem.label)}
+                  </Link>
+                </Box>
+              ))}
             </Box>
-          ))}
+          )}
         </Box>
+      ))}
+    </Box>
         <Button
           id="btn-en-ar"
           onClick={changeLanguage}
           value="en"
-          variant="orange"
+
           sx={styles.donateNow}
         >
           English
@@ -183,6 +252,7 @@ const styles = {
     fontSize: 1,
     minHeight: 45,
     margin: "auto 30px 40px",
-    background: "#FE6A00",
+    background: "#5253B9 !important",
+    
   },
 };

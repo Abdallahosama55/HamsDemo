@@ -54,12 +54,8 @@ function SliderComponent() {
   const { t } = useTranslation();
 
   return (
-    <div className="slider-container" >
-      <h3 className="text-[20px] flex items-center justify-center font-bold text-center py-12  text-transparent bg-clip-text text-[#3132A9]">
-      <MdOutlineStarRate color="#555695" /><span className="text-[#000] pe-3">{t("trust")}</span> 
-      <span className=" text-[#3132A9]">{t("know-more-title")}</span>
-      <MdOutlineStarRate color="#555695" />
-      </h3>
+    <div className="slider-container mt-12" >
+
       <Slider {...settings}>
         {images.map((image) => (
           <div key={image.id} className="flex justify-center items-center h-24 w-full  ">

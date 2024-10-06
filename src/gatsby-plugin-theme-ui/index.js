@@ -16,7 +16,7 @@ const theme = {
     background: "#fff", // body background color
     backgroundSecondary: "#EEF2F6", // secondary background color
     borderColor: "#000", // border color
-    primary: "#0b0b0d", // primary button and link color
+    primary: "#5253B9", // primary button and link color
     secondary: "#000", // secondary color - can be used for hover states
     muted: "#7B8188", // muted color
     accent: "#000", // a contrast color for emphasizing UI
@@ -25,13 +25,7 @@ const theme = {
 
     // highlight	a background color for highlighting text
     modes: {
-      dark: {
-        text: "#000",
-        background: "#000",
-        primary: "#0cf",
-        secondary: "#09c",
-        muted: "#111",
-      },
+ 
     },
   },
   fonts: {
@@ -252,7 +246,7 @@ const theme = {
       flex: ["1 1 calc(50% - 16px)", "1 1 20%"],
       minHeight: 130,
       m: 2,
-      background: "#000",
+
       border: "1px solid #EDEFF6",
       borderRadius: 5,
     },

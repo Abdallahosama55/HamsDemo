@@ -8,6 +8,7 @@ import SliderComponent from "./SliderComponent";
 import AnimatedSVG from "../components/AnimatedSVG";
 import { margin, rgba } from "polished";
 import { TypeAnimation } from 'react-type-animation';
+import blurimg from '../assets/images/blur.png'
 const AutoTypingText = ({ text, speed }) => {
   const [typedText, setTypedText] = useState('');
   const [index, setIndex] = useState(0);
@@ -44,60 +45,59 @@ const subHeaderTextEn ="dssddds"
 
   return (
     <section id="home" sx={styles.section}>
-      <div className="lg:mx-32">
-        
-        <div className="grid lg:grid-cols-2 grid-cols-1 pt-24 p-12 ">
-          <Box sx={styles.bannerContent}>
-          
-            <div className="ar">
-              <h1 id="main-title" style={{ lineHeight: "0.7" }} >
-                <span
-                  className="header-font"
-                  style={{
-                
-                    color: "#000",
-                    fontWeight:"800"
-                   
-                  }}
-                >
-              {i18n.language==="ar" ?    <TypeAnimation
-                    sequence={[
-                      subHeaderText, // Your animated text
-                      1000, // Wait 1 second after displaying the text
-                    ]}
-                    style={{ fontSize: '0.45em', color: '#000',  lineHeight: "0.4", }} // Change font size and color here
-                    repeat={0} // Play once
-                    omitDeletionAnimation={true} // Do not delete the text
-                  />: <span   style={{ fontSize: '0.6em', color: '#000',    lineHeight: "1", }} ><AutoTypingText text={subHeaderText} speed={80} /></span>  }
-                </span>
-              </h1>
+    <div className="lg:mx-32">
+      <div className="grid lg:grid-cols-2 grid-cols-1 pt-24 p-12">
+        <Box sx={styles.bannerContent} className="relative"> {/* Add relative here */}
+          {/* Text container */}
+          <div className="ar" style={{ position: 'relative', zIndex: 1 }}> {/* Ensure text is above image */}
+            <h1 id="main-title" style={{ lineHeight: "0.7" }}>
+              <span className="header-font" style={{ color: "#000", fontWeight: "800" }}>
+                {i18n.language === "ar" ? (
+                  <TypeAnimation
+                    sequence={[subHeaderText, 1000]}
+                    style={{ fontSize: '0.45em', color: '#000', lineHeight: "0.4" }}
+                    repeat={0}
+                    omitDeletionAnimation={true}
+                  />
+                ) : (
+                  <span style={{ fontSize: '0.6em', color: '#000', lineHeight: "1" }}>
+                    <AutoTypingText text={subHeaderText} speed={80} />
+                  </span>
+                )}
+              </span>
+            </h1>
+            <p
+              className="hjz-introduction"
+              style={{
+                fontSize: "1em",
+                margin: "0",
+                paddingTop: "30px",
+                lineHeight: "1.5",
+              }}
+            >
+              {t("Description-hjz")}
+            </p>
+          </div>
+          {/* Background image */}
+          <img
+            src={blurimg}
+            alt="blur"
+            className="absolute top-[-90px] start-[-120px] h-[300px] w-[300px] opacity-50"
+            style={{ zIndex: 0 }} // Ensure the image is behind the text
+          />
+        </Box>
 
-              <p
-                className="hjz-introduction"
-                style={{
-                  fontSize: "1em",
-                  margin: "0",
-                  paddingTop: "30px",
-                  lineHeight: "1.5",
-                }}
-              >
-                {t("Description-hjz")}
-              </p>
-            </div>
-            <Text as="p"></Text>
-          </Box>
-
-          <Box>
-            <LiveKitComponent />
-          </Box>
-        </div>
+        <Box >
+          <LiveKitComponent />
+        </Box>
       </div>
-      <AnimatedSVG />
-      <div>
-        <h3 className="title-know-more">{t("know-more-title")}</h3>
-      </div>
-      <SliderComponent />
-    </section>
+    </div>
+    <AnimatedSVG />
+    <div>
+      <h3 className="title-know-more">{t("know-more-title")}</h3>
+    </div>
+    <SliderComponent />
+  </section>
   );
 };
 

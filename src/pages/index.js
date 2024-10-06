@@ -12,6 +12,8 @@ import Questions from 'sections/questions.js';
 import Subscribe from 'sections/subscribe';
 import Problems from 'sections/Problems';
 import HowItWorks from 'sections/HowItWorks';
+import WhatBenfit from '../sections/WhatBenfit';
+import UseCase from '../sections/UseCase';
 
 export default function IndexPage() {
   useEffect(() => {
@@ -27,11 +29,13 @@ export default function IndexPage() {
       />
      
       <Banner />
-      <Support />
-      <PremiumFeature />
-     
-      <Problems />
       <HowItWorks />
+      <WhatBenfit/>
+      <Support />
+
+      <Problems />
+<PremiumFeature/>
+<UseCase/>
       <Questions />
       {/* <AppFeature /> */}
       {/* <Dashboard /> */}

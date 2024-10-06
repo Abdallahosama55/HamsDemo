@@ -1,183 +1,118 @@
-/** @jsx jsx */
-import { jsx, Box, Container, Grid, Flex } from "theme-ui";
-import SectionHeading from "components/section-heading";
-import how01 from "../assets/images/speech-to-text.svg";
-import how02 from "../assets/images/text-to-speech.svg";
-import how03 from "../assets/images/AI-to-speech.svg";
-import imgsrc from "../assets/images/chat.png";
-import { useTranslation } from "react-i18next";
+import React, { useEffect } from 'react';
+import chat from '../assets/images/soultion.png';
+import { Text } from 'theme-ui';
+import { useTranslation } from 'react-i18next';
+import { HowItWorks } from 'sections/HowItWorks';
+import AccordionList from '../components/accordion/AccordionList';
+import { GoPlus } from "react-icons/go";
+import { LuMinus } from "react-icons/lu";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
-const steps = [
-  {
-    imgSrc: how01,
-    titleKey: "How-work-Title-01",
-    descriptionKey: "How-work-Description-01",
-  },
-  {
-    imgSrc: how02,
-    titleKey: "How-work-Title-02",
-    descriptionKey: "How-work-Description-02",
-  },
-  {
-    imgSrc: how03,
-    titleKey: "How-work-Title-03",
-    descriptionKey: "How-work-Description-03",
-  },
-];
-
-const PremiumFeature = () => {
+function PremiumFeature() {
   const { t } = useTranslation();
   useEffect(() => {
     AOS.init({ duration: 1000 }); // Initialize AOS with a 1 second duration
   }, []);
-  return (
-    <section id="HowUseIt" sx={styles.section}>
-      <Container>
-        <Grid sx={styles.grid}>
-          <Box className="w-full h-full "
-             data-aos={"zoom-out"}
-             data-aos-duration="1200" // Custom duration for each card
-             data-aos-delay={200} // Delay the animation for each card
-          >
-            <img
-              className=""
-              src={imgsrc} // You can change this to the appropriate step if needed
-              alt={"How-it-works"} // Using translation for alt text
-              sx={{
-                width: "100%",
-                height: "auto",
-                objectFit: "contain",
-              }}
-           
-            />
-          </Box>
+  // Function to split the text and return styled components
+  const renderStyledText = (text) => {
+   const words = text.split(" ");
+   const firstTwoWords = words.slice(0, 2).join(" ");
+   const remainingText = words.slice(2).join(" ");
+ 
+   return (
+     <>
+       <span style={{ color: 'black' }}>{firstTwoWords} </span>
+       <span style={{
+         background: "linear-gradient(90deg, #3132A9 41.17%, #8485E6 100%)",
+         WebkitBackgroundClip: "text",
+         color: "transparent"
+       }}>
+         {remainingText}
+       </span>
+     </>
+   );
+ };
+const items = [
+  {
+    number: "01",
+    title: <div>{t("Solutions-work-Title-04")}</div>,
+    contents: <div>{t("Solutions-work-Description-04")}</div>,
+  },
+  {
+    number: "02",
+    title: <div>{t("Solutions-work-Title-05")}</div>,
+    contents: <div>{t("Solutions-work-Description-05")}</div>,
+  },
+  {
+    number: "03",
+    title: <div>{t("Solutions-work-Title-06")}</div>,
+    contents: <div>{t("Solutions-work-Description-06")}</div>,
+  },
+  {
+    number: "04",
+    title: <div>{t("Solutions-work-Title-07")}</div>,
+    contents: <div>{t("Solutions-work-Description-07")}</div>,
+  },
+  {
+    number: "05",
+    title: <div>{t("Solutions-work-Title-08")}</div>,
+    contents: <div>{t("Solutions-work-Description-08")}</div>,
+  },
+  {
+    number: "06",
+    title: <div>{t("Solutions-work-Title-09")}</div>,
+    contents: <div>{t("Solutions-work-Description-09")}</div>,
+  },
+];
 
-          <Box sx={styles.rightContent}>
-            <div>
-              {steps.map((step, index) => (
-                <Flex
-                  key={index}
-                  id="icon"
-                  sx={styles.step}
-                  data-aos={"fade-up"}
-                  data-aos-duration="1200" // Custom duration for each card
-                  data-aos-delay={index * 200} // Delay the animation for each card
-                >
-                  <img
-                    sx={styles.icon}
-                    src={step.imgSrc}
-                    alt={t(step.titleKey)}
-                  />
-                  <Flex>
-                    <Box sx={styles.descriptionBox}>
-                      <h4
-                        style={{ marginBottom: 0, color: "#18D678" }}
-                        className="sub-header-how"
-                      >
-                        {t(step.titleKey)}
-                      </h4>
-                      <p style={{ color: "#FFF", marginTop: 0 }}>
-                        {t(step.descriptionKey)}
-                      </p>
-                    </Box>
-                  </Flex>
-                </Flex>
-              ))}
-            </div>
-          </Box>
-        </Grid>
-      </Container>
-      <Box
-        sx={styles.HamsFeature}
-        className="text-center py-6  mx-6 lg:px-48 px-8 lg:text-[28px] text-[18px] text-[#6666ce] font-bold mt-56 rounded-t-xl lg:leading-[60px] bg-white"
+
+  return (
+    <section className=' py-12' id='HowUseIt'>
+
+<Text as="h2" sx={styles.heading}>
+        {renderStyledText(t("How it work"))}
+        <div className="w-full flex flex-col items-center justify-center">
+          <hr className="h-[5px] w-[25px] bg-[#5253B9]" />
+          <p className='   text-[16px]  py-5 font-light'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lsed do eiusmod tempor</p>
+        </div>
+      </Text>
+      <div className='grid lg:grid-cols-6' 
+      
       >
-        <h4>{t("word-box")}</h4>
-        <button className="text-white text-sm hover:bg-[#ffffff] hover:text-[#6666ce] border border-[#6666ce] bg-[#6666ce] shadow-lg px-12 py-3 my-12 rounded-2xl">
-          {t("Signup")}
-        </button>
-      </Box>
+        <div className='lg:col-span-2 lg:mx-0 mx-12 my-14' 
+             data-aos={"fade-left"}
+             data-aos-duration="1200" // Custom duration for each card
+             data-aos-delay={200} // Delay the animation for each car
+        >
+          <img
+            src={chat}
+            alt={"hams_solution"}
+            className='rounded-e-2xl bg-black w-full'
+            style={{ boxShadow: '7px 16px 30px 5px rgba(0, 0, 0, 0.25)' }} // Adjust the rgba value as necessary
+
+          />
+        </div>
+        <div className=' lg:col-span-4 lg:mx-24 mx-8'       
+            data-aos={"zoom-in"}
+             data-aos-duration="1200" // Custom duration for each card
+             data-aos-delay={200} // Delay the animation for each car 
+             >
+
+        <AccordionList sections={items} iconUp={<GoPlus />} iconDown={<LuMinus />} />
+
+        </div>
+      </div>
     </section>
   );
-};
+}
 
 export default PremiumFeature;
 
 const styles = {
-  normalBox: {
-    h4: {
-      width: "100%",
-      textAlign: "start",
-      height: "100%",
-      background: "#FAFAFA",
-      border: "5px solid #18D678",
-      padding: "15px 0",
-      fontSize: "1.8em",
-    },
-  },
-  step: {
-    alignItems: "start",
-    gap: "2",
-    width: "100%",
-
-    flexDirection: "row", // Stack the image and text vertically
-    mb: 4, // Add margin-bottom for spacing between steps
-    textAlign: "start", // Center text below each image
-  },
-  section: {
-    pt: [6, null, null, 6, 8, 9],
-    pb: [6, null, null, null, 7, 9, 11, null],
-    background: "linear-gradient(to bottom, #3132A9, #8485E6)", // Change to background
-  },
-  HamsFeature: {
-
-    background: "linear-gradient(to bottom, #F3F3FF, #FFFFFF)", // Change to background
-  },
-
-  icon: {
-    width: "60px", // Set a fixed width for consistent image size
-    height: "60px", // Set a fixed height for symmetric images
-    mb: 3, // Add margin-bottom to separate the image from the text
-    objectFit: "contain", // Ensure images fit within the defined size without distortion
-  },
-  descriptionBox: {
-    maxWidth: "220px", // Limit the width of the description text
-    textAlign: "start", // Ensure text is centered under the image
-  },
-  grid: {
-    alignItems: "center",
-    justifyItems: "center",
-    gridTemplateColumns: [
-      "1fr",
-      null,
-      null,
-      null,
-      "1fr 431px",
-      "1fr 530px",
-      "1fr 550px",
-    ],
-  },
   heading: {
-    textAlign: ["left", null, null, "center", "left"],
-    ml: [null, null, null, "auto"],
-    maxWidth: [null, null, null, 520, 660],
-    h2: {
-      fontWeight: "bold",
-      color: "#18D678",
-      fontSize: "3em",
-      margin: "0px",
-    },
-    p: {
-      margin: "0px",
-      color: "#FFF",
-      fontSize: "2em",
-    },
+    fontWeight: 600,
+    fontSize: ["30px", null, null, "40px"],
+    textAlign: "center",
+
   },
-  illustration: {
-    mb: [-6, null, null, -8, 0],
-    position: "relative",
-    zIndex: -1,
-  },
-  rightContent: {},
-};
+}

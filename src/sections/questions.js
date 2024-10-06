@@ -21,7 +21,49 @@ const PremiumFeature = () => {
     {
       title: t("FAQ-Title-03"),
       contents: <div>{t("FAQ-Description-03")}</div>,
-    }
+    },
+    {
+      title: t("FAQ-Title-01"),
+      contents: <div>{t("FAQ-Description-01")}</div>,
+    },
+    {
+      title: t("FAQ-Title-02"),
+      contents: <div>{t("FAQ-Description-02")}</div>,
+    },
+    {
+      title: t("FAQ-Title-03"),
+      contents: <div>{t("FAQ-Description-03")}</div>,
+    },
+
+
+  ];
+  const data2 = [
+    {
+      title: t("FAQ-Title-01"),
+      contents: <div>{t("FAQ-Description-01")}</div>,
+    },
+    {
+      title: t("FAQ-Title-02"),
+      contents: <div>{t("FAQ-Description-02")}</div>,
+    },
+    {
+      title: t("FAQ-Title-03"),
+      contents: <div>{t("FAQ-Description-03")}</div>,
+    },
+    {
+      title: t("FAQ-Title-01"),
+      contents: <div>{t("FAQ-Description-01")}</div>,
+    },
+    {
+      title: t("FAQ-Title-02"),
+      contents: <div>{t("FAQ-Description-02")}</div>,
+    },
+    {
+      title: t("FAQ-Title-03"),
+      contents: <div>{t("FAQ-Description-03")}</div>,
+    },
+
+
   ];
       
   const title=t('FAQs')
@@ -37,7 +79,14 @@ const PremiumFeature = () => {
 
         </Text>
         {/* Insert AccordionList here */}
+
+
+        <div className=' flex lg:flex-row flex-col lg:mt-12 gap-5'>
         <AccordionList sections={data} />
+        <AccordionList sections={data2} />
+
+        </div>
+      
       </Container>
     </section>
   );

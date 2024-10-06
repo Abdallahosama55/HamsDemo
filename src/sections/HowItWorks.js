@@ -84,7 +84,7 @@ const styles = {
     px: [3, null, null, 4],
     backgroundColor: "#f9f9f9",
     textAlign: "center",
-    my: "90px",
+ 
   },
   heading: {
     fontWeight: 600,
@@ -94,7 +94,7 @@ const styles = {
       "linear-gradient(90deg, rgba(49,50,169,1) 0%, rgba(132,133,230,1) 100%)",
     WebkitBackgroundClip: "text",
 
-    my: "90px",
+mb:8
   },
   stepsWrapper: {
     display: "grid",

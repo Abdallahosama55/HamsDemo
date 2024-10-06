@@ -144,8 +144,7 @@ const styles = {
     alignItems: "flex-start",
     borderRadius:"6px",
     padding:"15px",
-    border:"1px solid #0002A",
-    boxShadow:"2px 2px 2px 2px rgba(0, 0, 0, 0.1);"
+    
   },
   iconWrapper: {
     display: "flex",

@@ -221,7 +221,8 @@ const styles = {
     display: ["flex"],
     listStyle: "none",
     flexGrow: 1,
-    p: 0,
+   justifyContent:"center",
+    px: 12,
     li: {
       position: "relative", // Make the li position relative to position the hover text
       "& .hover-text": {
