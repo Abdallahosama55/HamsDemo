@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Container, Flex, Button } from "theme-ui";
 import Sticky from "react-stickynode";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { DrawerProvider } from "contexts/drawer/drawer-provider";
 import NavbarDrawer from "./navbar-drawer";
 import Logo from "components/logoHeader";
@@ -18,75 +18,58 @@ import Subitem from "../cards/Subitem";
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
-  const [isHovered, setIsHovered] = useState(false); // State for hover effect
-
+  const [hoveredItem, setHoveredItem] = useState(null);
   const { t, i18n } = useTranslation();
   const [state, setState] = useState({
     isMobileMenu: false,
     isSticky: false,
   });
-  //choose the screen size
-  const handleResize = () => {
-    if (window.innerWidth < 720) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
 
-  // create an event listener
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  });
-
-  useEffect(() => {
-    document.getElementById("main-menu").style.direction = "rtl";
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth < 720);
   }, []);
 
-  const handleCloseMenu = () => {
-    setState({
-      ...state,
-      isMobileMenu: false,
-    });
-  };
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
 
-  const changeLanguage = async (e) => {
-    i18n.changeLanguage(e.target.value);
-    if (e.target.value === "en") {
-      document.getElementById("main-menu").style.direction = "ltr";
-      document.documentElement.setAttribute("lang", "ar");
-      e.target.value = "ar";
-      e.target.innerHTML = "Arabic";
-      document.body.style.direction = "ltr";
-      //Get all the elements with en
-      const ars = document.getElementsByClassName("ar");
-      for (let i = 0; i < ars.length; i++) {
-        let a = ars[i];
-        await a.classList.add("en");
-        await a.classList.remove("ar");
-      }
-      const arsFont = document.getElementsByTagName("body");
-      await arsFont[0].classList.add("en-font");
-      await arsFont[0].classList.remove("ar-font");
-    } else {
-      document.documentElement.setAttribute("lang", "en");
-      document.getElementById("main-menu").style.direction = "rtl";
-      e.target.value = "en";
-      e.target.innerHTML = "English";
-      document.body.style.direction = "rtl";
-      //Get all the elements with en
-      const ens = document.getElementsByClassName("en");
-      for (let i = 0; i < ens.length; i++) {
-        let a = ens[i];
-        await a.classList.add("ar");
-        await a.classList.remove("en");
-      }
-      const arsFont = document.getElementsByTagName("body");
-      await arsFont[0].classList.add("ar-font");
-      await arsFont[0].classList.remove("en-font");
+  useEffect(() => {
+    const mainMenu = document.getElementById("main-menu");
+    if (mainMenu) {
+      mainMenu.style.direction = "rtl";
     }
-  };
+  }, []);
+
+  const handleCloseMenu = useCallback(() => {
+    setState(prev => ({ ...prev, isMobileMenu: false }));
+  }, []);
+
+  const changeLanguage = useCallback(async (e) => {
+    const newLang = e.target.value === "en" ? "ar" : "en";
+    await i18n.changeLanguage(newLang);
+    
+    document.documentElement.setAttribute("lang", newLang);
+    document.body.style.direction = newLang === "en" ? "ltr" : "rtl";
+    
+    const mainMenu = document.getElementById("main-menu");
+    if (mainMenu) {
+      mainMenu.style.direction = newLang === "en" ? "ltr" : "rtl";
+    }
+
+    e.target.value = newLang;
+    e.target.innerHTML = newLang === "en" ? "English" : "Arabic";
+
+    const elements = document.getElementsByClassName(newLang === "en" ? "ar" : "en");
+    Array.from(elements).forEach(el => {
+      el.classList.replace(newLang === "en" ? "ar" : "en", newLang);
+    });
+
+    const body = document.body;
+    body.classList.toggle("en-font", newLang === "en");
+    body.classList.toggle("ar-font", newLang === "ar");
+  }, [i18n]);
 
   return (
     <DrawerProvider>
@@ -108,16 +91,16 @@ export default function Header() {
                   className={state.isMobileMenu ? "navbar active" : "navbar"}
                 >
                   <Box
-                    style={{ justifyContent: "space-evenly" }}
                     as="ul"
                     sx={styles.navList}
+                    style={{ justifyContent: "space-evenly" }}
                     className={state.isMobileMenu ? "active" : ""}
                   >
-                    {menuItems.map(({ path, label }, i) => (
+                    {menuItems?.map(({ path, label }, i) => (
                       <li
                         key={i}
-                        onMouseEnter={() => setIsHovered(true)} // Set hover state
-                        onMouseLeave={() => setIsHovered(false)} // Reset hover state
+                        onMouseEnter={() => setHoveredItem(path)}
+                        onMouseLeave={() => setHoveredItem(null)}
                       >
                         <NavLink
                           path={path}
@@ -125,34 +108,14 @@ export default function Header() {
                           onClick={handleCloseMenu}
                           className="hover:text-[#3132A9]"
                         />
-
                         {path === "HowUseIt" && (
-                          <div className="transition-opacity duration-300 ease-in-out">
-                            {isHovered ? (
-                              <div className="flex items-center">
-                                <MdOutlineKeyboardArrowUp />
-                                <div
-                                  className={`hover-text ${isHovered ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out`}
-                                >
-                                  <Subitem />
-                                </div>
-                              </div>
-                            ) : (
-                              <div className="flex items-center">
-                                <MdOutlineKeyboardArrowDown />
-                              </div>
-                            )}
-                          </div>
+                          <DropdownIndicator isHovered={hoveredItem === path} />
                         )}
                       </li>
                     ))}
                   </Box>
                 </Flex>
                 <Flex sx={styles.buttonGroup}>
-                  {/* <button sx={styles.login}>
-                    <Image src={lock} alt="lock icon" />
-                    Login
-                  </button> */}
                   <Button
                     id="btn-languages"
                     onClick={changeLanguage}
@@ -163,7 +126,7 @@ export default function Header() {
                     English
                   </Button>
                 </Flex>
-                {isMobile ? <NavbarDrawer /> : ""}
+                {isMobile && <NavbarDrawer />}
               </Box>
             </Container>
           </Box>
@@ -172,6 +135,23 @@ export default function Header() {
     </DrawerProvider>
   );
 }
+
+const DropdownIndicator = ({ isHovered }) => (
+  <div className="transition-opacity duration-300 ease-in-out">
+    {isHovered ? (
+      <div className="flex items-center">
+        <MdOutlineKeyboardArrowUp />
+        <div className="hover-text opacity-100 transition-opacity duration-300 ease-in-out">
+          <Subitem />
+        </div>
+      </div>
+    ) : (
+      <div className="flex items-center">
+        <MdOutlineKeyboardArrowDown />
+      </div>
+    )}
+  </div>
+);
 
 const styles = {
   headerWrapper: {
